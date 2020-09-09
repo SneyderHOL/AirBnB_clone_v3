@@ -33,7 +33,6 @@ def create_state():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in data:
         return make_response(jsonify({'error': 'Missing name'}), 400)
-    print("NNNNNNNNNNN {}".format(data))
     new_obj = State()
     for key, value in data.items():
         if key != 'id' and key != 'created_at' and key != 'updated_at':
