@@ -67,6 +67,13 @@ class Place(BaseModel, Base):
                     review_list.append(review)
             return review_list
 
+        @amenities.setter
+        def amenities(self, value):
+            """setter method for amenity_ids"""
+            if type(value) != Amenity:
+                return
+            self.amenity_ids.append(value.id)
+
         @property
         def amenities(self):
             """getter attribute returns the list of Amenity instances"""
