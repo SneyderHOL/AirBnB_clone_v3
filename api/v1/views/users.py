@@ -6,7 +6,6 @@ from api.v1.views import app_views
 from flask import jsonify, make_response, request, abort
 from models import storage
 from models.user import User
-import hashlib
 
 
 @app_views.route('/users', methods=['GET'],
@@ -69,15 +68,8 @@ def update_user(user_id):
     data = request.get_json()
     if type(data) is not dict:
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
-
     for key, value in data.items():
         if key != 'id' and key != 'created_at' and key != 'updated_at':
             setattr(user_obj, key, value)
-        if key == 'password':
-            pw = value
-            encoding = 'utf-8'
-            pw_hashed = hashlib.md5(pw.encode(encoding)).hexdigest()
-            setattr(user_obj, key, pw_hashed)
-
     user_obj.save()
     return jsonify(user_obj.to_dict())
