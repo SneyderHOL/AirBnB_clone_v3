@@ -39,10 +39,16 @@ def create_user():
         return make_response(jsonify({'error': 'Missing email'}), 400)
     if 'password' not in data:
         return make_response(jsonify({'error': 'Missing password'}), 400)
-    new_obj = User()
     for key, value in data.items():
-        if key != 'id' and key != 'created_at' and key != 'updated_at':
-            setattr(new_obj, key, value)
+        if key == 'id' and key == 'created_at' and key == 'updated_at':
+            del data[key]
+    new_obj = User(**data)
+    #     if key == 'password':
+    #         pw = value
+    #         encoding = 'utf-8'
+    #         pw_hashed = hashlib.md5(pw.encode(encoding)).hexdigest()
+    #         setattr(new_obj, key, pw_hashed)
+
     new_obj.save()
     return make_response(jsonify(new_obj.to_dict()), 201)
 
@@ -77,6 +83,6 @@ def update_user(user_id):
             encoding = 'utf-8'
             pw_hashed = hashlib.md5(pw.encode(encoding)).hexdigest()
             setattr(user_obj, key, pw_hashed)
-            
+
     user_obj.save()
     return jsonify(user_obj.to_dict())
