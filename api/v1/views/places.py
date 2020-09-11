@@ -113,7 +113,7 @@ def search_places():
         for place in city.places:
             list_places.append(place)
     if len_states == 0 and len_cities == 0:
-        list_places = storage.all(Place)
+        list_places = storage.all(Place).values()
     if (len_states > 0 or len_cities > 0) and len(list_places) == 0:
         return jsonify({})
     if len_amenities == 0:
