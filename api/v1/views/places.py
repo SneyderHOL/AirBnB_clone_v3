@@ -99,11 +99,14 @@ def search_places():
     if len_states > 0:
         for state_id in data['states']:
             list_states.append(get_object(State, state_id))
-        for state in list_state:
-            list_cities.append(state.cities)
+        for state in list_states:
+            for city in state.cities:
+                list_cities.append(city)
     if len_cities > 0:
         for city_id in data['cities']:
             list_cities.append(get_object(City, city_id))
+    # print("this is list cities--------->>\n")
+    # print(list_cities)
     list_cities = list(set(list_cities))
     list_places = []
     for city in list_cities:
