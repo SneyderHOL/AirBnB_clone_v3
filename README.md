@@ -174,4 +174,4 @@ Second part of Airbnb:
 Public Domain. No copy write protection.
 
 [contributors-shield]: https://img.shields.io/github/contributors/andergcp/AirBnB_clone?style=social&logo=appveyor
-[contributors-url]: https://github.com/andergcp/AirBnB_clone/graphs/contributors
+[contributors-url]: https://github.com/andergcp/AirBnB_clone_v3/graphs/contributors
