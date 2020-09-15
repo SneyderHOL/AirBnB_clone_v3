@@ -1,0 +1,25 @@
+Deletes a review
+  ---
+  tags:
+    - Reviews
+  parameters:
+    - in: path
+      name: review_id
+      type: string
+      description: The Review id
+      required: true
+  responses:
+    200:
+      description: Review object deleted
+      schema:
+        type: object
+        example: {}
+    404:
+      description: Parameter review_id not linked to any Review object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

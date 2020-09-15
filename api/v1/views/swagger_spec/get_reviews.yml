@@ -1,0 +1,47 @@
+Retrieves all reviews of a place
+  ---
+  tags:
+    - Reviews
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+  responses:
+    200:
+      description: List of all reviews
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Review object id
+          text:
+            type: string
+            description: Review object text
+          place_id:
+            type: string
+            description: Place object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: [{"__class__": "Review", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "text": "Nice place", "place_id": "442d6a74-3d89-25ca-7a6d-e14c340ecdcd", "user_id": "a5d81c11-24b9-f46c-db7c-e14c340ecdcd", "updated_at": "2020-09-10T20:06:21"}, {"__class__": "Review", "created_at": "2020-09-11T14:10:11", id: "a15b91e5-6b8a-3f2d-9abc-73ccea64f18b", "text": "Big and quiet place", "place_id": "442d6a74-3d89-25ca-7a6d-e14c340ecdcd", "user_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "updated_at": "2020-09-11T14:10:11"}]
+    404:
+      description: Parameter place_id not linked to any Place object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

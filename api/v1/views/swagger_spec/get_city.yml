@@ -1,0 +1,44 @@
+Retrieves a city
+  ---
+  tags:
+    - Cities
+  parameters:
+    - in: path
+      name: city_id
+      type: string
+      description: The City id
+      required: true
+  responses:
+    200:
+      description: City object retrieved
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: City object id
+          name:
+            type: string
+            description: City object name
+          state_id:
+            type: string
+            description: State object id
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: {"__class__": "City", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "name": "San Francisco", "state_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "updated_at": "2020-09-10T20:06:21"}
+    404:
+      description: Parameter city_id not linked to any City object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

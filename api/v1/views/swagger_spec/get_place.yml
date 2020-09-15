@@ -1,0 +1,68 @@
+Retrieves a place
+  ---
+  tags:
+    - Places
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+  responses:
+    200:
+      description: Place object retrieved
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Place object id
+          name:
+            type: string
+            description: Place object name
+          city_id:
+            type: string
+            description: City object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+          description:
+            type: string
+            description: Place object description
+          number_rooms:
+            type: integer
+            description: Place object number_rooms
+          number_bathrooms:
+            type: integer
+            description: Place object number_bathrooms
+          max_guest:
+            type: integer
+            description: Place object max_guest
+          price_by_night:
+            type: integer
+            description: Place object price_by_night
+          latitude:
+            type: float
+            description: Place object latitude
+          longitude:
+            type: float
+            description: Place object longitude
+        example: {"__class__": "Place", "created_at": "2020-09-11T14:10:11", id: "073084e1-1d9d-49e6-8383-42ef6f4325b5", "name": "Bright Studio in GOLD COAST", "city_id": "02d9a2b5-7dca-423f-8406-707bc76abf7e", "user_id": "3fda0d5c-fea4-4920-bc91-6e6c6663d161", "updated_at": "2020-09-11T14:10:11", "description": "This lovely, sunny studio is in the beautiful Gold Coast neighborhood of downtown", "number_rooms": 2, "number_bathrooms": 1, "max_guest": 2, "price_by_night": 65, "latitude": 41.9009, "longitude": -87.6298}
+    404:
+      description: Parameter place_id not linked to any Place object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

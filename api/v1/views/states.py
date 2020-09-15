@@ -6,9 +6,11 @@ from api.v1.views import app_views
 from flask import jsonify, make_response, request, abort
 from models import storage
 from models.state import State
+from flasgger import swag_from
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
+@swag_from('swagger_spec/get_states.yml')
 def get_states():
     """Retrieves the list of all State objects"""
     state_list = list(storage.all(State).values())
@@ -17,6 +19,7 @@ def get_states():
 
 
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+@swag_from('swagger_spec/get_state.yml')
 def get_state(state_id):
     """Retrieves a State object"""
     state_obj = storage.get(State, state_id)
@@ -26,6 +29,7 @@ def get_state(state_id):
 
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
+@swag_from('swagger_spec/create_state.yml')
 def create_state():
     """Creates a new State object"""
     data = request.get_json()
@@ -43,6 +47,7 @@ def create_state():
 
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)
+@swag_from('swagger_spec/delete_state.yml')
 def delete_state(state_id):
     """Deletes a State object"""
     state_obj = storage.get(State, state_id)
@@ -54,6 +59,7 @@ def delete_state(state_id):
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('swagger_spec/update_state.yml')
 def update_state(state_id):
     """Updates a State object"""
     state_obj = storage.get(State, state_id)

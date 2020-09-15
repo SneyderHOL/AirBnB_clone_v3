@@ -1,0 +1,62 @@
+Creates a user
+  ---
+  tags:
+    - Users
+  consumes:
+    - application/json
+  parameters:
+    - in: formData
+      name: first_name
+      type: string
+      description: The User first_name
+    - in: formData
+      name: last_name
+      type: string
+      description: The User last_name
+    - in: formData
+      name: email
+      type: string
+      description: The User email
+      required: true
+    - in: formData
+      name: password
+      type: string
+      description: The User password
+      required: true
+  responses:
+    201:
+      description: User object created
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: User object id
+          first_name:
+            type: string
+            description: User object first_name
+          last_name:
+            type: string
+            description: User object last_name
+          updated_at:
+            type: string
+            description: Datetime as string
+          email:
+            type: string
+            description: User object email
+        example: {"__class__": "User", "created_at": "2020-09-10T20:05:21", "id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "first_name": "Ryan", "last_name": "Odonnel", "updated_at": "2020-09-10T20:05:21", "email": "ryan@service.com"}
+    400:
+      description: Missing email/password key in body request
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Missing email/password"}

@@ -1,0 +1,68 @@
+Creates a review
+  ---
+  tags:
+    - Reviews
+  consumes:
+    - application/json
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+    - in: formData
+      name: user_id
+      type: string
+      description: The User id
+      required: true
+    - in: formData
+      name: text
+      type: string
+      description: The Review text
+      required: true
+  responses:
+    201:
+      description: Review object created
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Review object id
+          text:
+            type: string
+            description: Review object text
+          place_id:
+            type: string
+            description: Place object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: {"__class__": "Review", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "text": "Nice place", "place_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "user_id": "a5d81c11-24b9-f46c-db7c-e14c340ecdcd", "updated_at": "2020-09-10T20:06:21"}
+    400:
+      description: Missing user_id/text key in body request
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Missing user_id/text"}
+    404:
+      description: Parameter place_id/user_id not linked to any Place/User object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

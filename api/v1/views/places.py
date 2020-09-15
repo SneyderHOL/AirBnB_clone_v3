@@ -11,10 +11,12 @@ from models.place import Place
 from models.user import User
 from models.state import State
 from os import environ
+from flasgger import swag_from
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
+@swag_from('swagger_spec/get_places.yml')
 def get_places_by_city(city_id):
     """Retrieves the list of all Place objects according to a City"""
     city = get_object(City, city_id)
@@ -23,6 +25,7 @@ def get_places_by_city(city_id):
 
 
 @app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
+@swag_from('swagger_spec/get_place.yml')
 def get_place(place_id):
     """Retrieves a Place object"""
     place_obj = get_object(Place, place_id)
@@ -31,6 +34,7 @@ def get_place(place_id):
 
 @app_views.route('/cities/<city_id>/places', methods=['POST'],
                  strict_slashes=False)
+@swag_from('swagger_spec/create_place.yml')
 def create_place_according_to_city(city_id):
     """Creates a new Place object according to a city"""
     data = request.get_json()
@@ -53,6 +57,7 @@ def create_place_according_to_city(city_id):
 
 @app_views.route('/places/<place_id>', methods=['DELETE'],
                  strict_slashes=False)
+@swag_from('swagger_spec/delete_place.yml')
 def delete_place(place_id):
     """Deletes a Place object"""
     place_obj = get_object(Place, place_id)
@@ -62,6 +67,7 @@ def delete_place(place_id):
 
 
 @app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('swagger_spec/update_place.yml')
 def update_place(place_id):
     """Updates a Place object"""
     place_obj = get_object(Place, place_id)
@@ -78,6 +84,7 @@ def update_place(place_id):
 
 @app_views.route('/places_search', methods=['POST'],
                  strict_slashes=False)
+@swag_from('swagger_spec/search_places.yml')
 def search_places():
     """Searches Places to data"""
     data = request.get_json()

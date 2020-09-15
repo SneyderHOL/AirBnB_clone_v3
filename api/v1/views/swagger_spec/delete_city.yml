@@ -1,0 +1,25 @@
+Deletes a city
+  ---
+  tags:
+    - Cities
+  parameters:
+    - in: path
+      name: city_id
+      type: string
+      description: The City id
+      required: true
+  responses:
+    200:
+      description: City object deleted
+      schema:
+        type: object
+        example: {}
+    404:
+      description: Parameter city_id not linked to any City object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

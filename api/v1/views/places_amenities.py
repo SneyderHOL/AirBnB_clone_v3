@@ -11,10 +11,12 @@ from models.place import Place
 from models.review import Review
 from models.user import User
 from os import environ
+from flasgger import swag_from
 
 
 @app_views.route('/places/<place_id>/amenities', methods=['GET'],
                  strict_slashes=False)
+@swag_from('swagger_spec/get_amenities_by_place.yml')
 def get_amenities_by_place(place_id):
     """Retrieves the list of all Amenity objects according to a Place"""
     place = get_object(Place, place_id)
@@ -24,6 +26,7 @@ def get_amenities_by_place(place_id):
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>', methods=['POST'],
                  strict_slashes=False)
+@swag_from('swagger_spec/link_amenity.yml')
 def link_amenity_to_place(place_id, amenity_id):
     """Links an Amenity object a place"""
     place_obj = get_object(Place, place_id)
@@ -44,6 +47,7 @@ def link_amenity_to_place(place_id, amenity_id):
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
                  methods=['DELETE'], strict_slashes=False)
+@swag_from('swagger_spec/delete_amenity_by_place.yml')
 def delete_amenity_from_place(place_id, amenity_id):
     """Deletes a Amenity object to a place"""
     place_obj = get_object(Place, place_id)

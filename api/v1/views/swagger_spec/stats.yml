@@ -1,0 +1,35 @@
+Retrieves stats
+  ---
+  tags:
+    - Stats
+  responses:
+    200:
+      description: Retrieves the number of each object by type
+      schema:
+        type: object
+        properties:
+          amenities:
+            type: integer
+            description: Number of Amenity objects
+          cities:
+            type: integer
+            description: Number of City objects
+          places:
+            type: integer
+            description: Number of Place objects
+          reviews:
+            type: integer
+            description: Number of Review objects
+          states:
+            type: integer
+            description: Number of State objects
+          users:
+            type: integer
+            description: Number of User objects
+        example:
+          amenities: 47
+          cities: 36
+          places: 154
+          reviews: 718
+          states: 27
+          users: 31

@@ -1,0 +1,30 @@
+Deletes an amenity
+  ---
+  tags:
+    - Place - Amenity
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+    - in: path
+      name: amenity_id
+      type: string
+      description: The Amenity id
+      required: true
+  responses:
+    200:
+      description: Amenity object deleted
+      schema:
+        type: object
+        example: {}
+    404:
+      description: Parameter place_id/amenity_id not linked to any Place/Amenity object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

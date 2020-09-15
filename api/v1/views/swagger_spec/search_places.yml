@@ -1,0 +1,84 @@
+Retrieves all places according to body request
+  ---
+  tags:
+    - Places
+  parameters:
+    - in: formData
+      name: state_id
+      type: string
+      description: The State id
+    - in: formData
+      name: city_id
+      type: string
+      description: The City id
+    - in: formData
+      name: amenity_id
+      type: string
+      description: The Amenity id
+  responses:
+    200:
+      description: List of all places
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Place object id
+          name:
+            type: string
+            description: Place object name
+          city_id:
+            type: string
+            description: City object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+          description:
+            type: string
+            description: Place object description
+          number_rooms:
+            type: integer
+            description: Place object number_rooms
+          number_bathrooms:
+            type: integer
+            description: Place object number_bathrooms
+          max_guest:
+            type: integer
+            description: Place object max_guest
+          price_by_night:
+            type: integer
+            description: Place object price_by_night
+          latitude:
+            type: float
+            description: Place object latitude
+          longitude:
+            type: float
+            description: Place object longitude
+        example: [{"__class__": "Place", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "name": "The Lynn House", "city_id": "02d9a2b5-7dca-423f-8406-707bc76abf7e", "user_id": "1721b75c-e0b2-46ae-8dd2-f86b62fb46e6", "updated_at": "2020-09-10T20:06:21", "description": "Our place is 2 blocks from Vista Park", "number_rooms": 2, "number_bathrooms": 2, "max_guest": 4, "price_by_night": 88, "latitude": 31.4141, "longitude": -109.879}, {"__class__": "Place", "created_at": "2020-09-11T14:10:11", id: "073084e1-1d9d-49e6-8383-42ef6f4325b5", "name": "Bright Studio in GOLD COAST", "city_id": "02d9a2b5-7dca-423f-8406-707bc76abf7e", "user_id": "3fda0d5c-fea4-4920-bc91-6e6c6663d161", "updated_at": "2020-09-11T14:10:11", "description": "This lovely, sunny studio is in the beautiful Gold Coast neighborhood of downtown", "number_rooms": 2, "number_bathrooms": 1, "max_guest": 2, "price_by_night": 65, "latitude": 41.9009, "longitude": -87.6298}, {"__class__": "Place", "created_at": "2020-09-11T14:10:11", id: "00e93fc3-53ff-4da4-8e72-faa5216f81bb", "name": "Bright Studio in GOLD COAST", "city_id": "f3923bdf-81f2-45e9-a5e1-fd128e122d45", "user_id": "3fda0d5c-fea4-4920-bc91-6e6c6663d161", "updated_at": "2020-09-11T14:10:11", "description": "Spanish Town Historic District, Heart of Downtown", "number_rooms": 2, "number_bathrooms": 1, "max_guest": 2, "price_by_night": 90, "latitude": 21.4088, "longitude": -157.745}]
+    400:
+      description: Body request is not a valid JSON
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not a JSON"}
+    404:
+      description: Parameter state_id/city_id/amenity_id not linked to any State/City/Amenity object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

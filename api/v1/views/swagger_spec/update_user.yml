@@ -1,0 +1,74 @@
+Updates a user
+  ---
+  tags:
+    - Users
+  consumes:
+    - application/json
+  parameters:
+    - in: path
+      name: user_id
+      type: string
+      description: The User id
+      required: true
+    - in: formData
+      name: first_name
+      type: string
+      description: The User first_name
+    - in: formData
+      name: last_name
+      type: string
+      description: The User last_name
+    - in: formData
+      name: email
+      type: string
+      description: The User email
+    - in: formData
+      name: password
+      type: string
+      description: The User password
+  responses:
+    200:
+      description: User object updated
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: User object id
+          first_name:
+            type: string
+            description: User object first_name
+          last_name:
+            type: string
+            description: User object last_name
+          updated_at:
+            type: string
+            description: Datetime as string
+          email:
+            type: string
+            description: User object email
+        example: {"__class__": "User", "created_at": "2020-09-10T20:05:21", "id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "first_name": "Ryan", "last_name": "Jhonson", "updated_at": "2020-09-10T20:05:21", "email": "ryan_new_email@service.com"}
+    400:
+      description: Body request is not a valid JSON
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not a JSON"}
+    404:
+      description: Parameter user_id not linked to any User object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

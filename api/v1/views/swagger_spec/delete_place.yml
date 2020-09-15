@@ -1,0 +1,25 @@
+Deletes a place
+  ---
+  tags:
+    - Places
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+  responses:
+    200:
+      description: Place object deleted
+      schema:
+        type: object
+        example: {}
+    404:
+      description: Parameter place_id not linked to any Place object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

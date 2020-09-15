@@ -1,0 +1,26 @@
+Retrieves all amenities
+  ---
+  tags:
+    - Amenities
+  responses:
+    200:
+      description: List of all amenities
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Amenity object id
+          name:
+            type: string
+            description: Amenity object name
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: [{"__class__": "Amenity", "created_at": "2020-09-10T20:05:21", "id": "d5b947a1-33aa-b863-bd2c-e14c340ecdcd", "name": "TV", "updated_at": "2020-09-10T20:05:21"}, {"__class__": "Amenity", "created_at": "2020-09-11T15:10:11", id: "ead1e5-f6ca-552d-9abc-73ccea64f18b", "name": "Wifi", "updated_at": "2020-09-11T15:10:11"}]

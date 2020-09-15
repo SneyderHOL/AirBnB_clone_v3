@@ -1,0 +1,111 @@
+Updates a place
+  ---
+  tags:
+    - Places
+  consumes:
+    - application/json
+  parameters:
+    - in: path
+      name: place_id
+      type: string
+      description: The Place id
+      required: true
+    - in: formData
+      name: name
+      type: string
+      description: The Place name
+    - in: formData
+      name: number_rooms
+      type: integer
+      description: The Place number_rooms
+    - in: formData
+      name: number_bathrooms
+      type: integer
+      description: The Place number_bathrooms
+    - in: formData
+      name: max_guest
+      type: integer
+      description: The Place max_guest
+    - in: formData
+      name: price_by_night
+      type: integer
+      description: The Place price_by_night
+    - in: formData
+      name: description
+      type: string
+      description: The Place description
+    - in: formData
+      name: latitude
+      type: float
+      description: The Place latitude
+    - in: formData
+      name: longitude
+      type: float
+      description: The Place longitude
+  responses:
+    200:
+      description: Place object updated
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Place object id
+          name:
+            type: string
+            description: Place object name
+          city_id:
+            type: string
+            description: City object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+          description:
+            type: string
+            description: Place object description
+          number_rooms:
+            type: integer
+            description: Place object number_rooms
+          number_bathrooms:
+            type: integer
+            description: Place object number_bathrooms
+          max_guest:
+            type: integer
+            description: Place object max_guest
+          price_by_night:
+            type: integer
+            description: Place object price_by_night
+          latitude:
+            type: float
+            description: Place object latitude
+          longitude:
+            type: float
+            description: Place object longitude
+        example: {"__class__": "Place", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "name": "The House that everyone would like", "city_id": "02d9a2b5-7dca-423f-8406-707bc76abf7e", "user_id": "1721b75c-e0b2-46ae-8dd2-f86b62fb46e6", "updated_at": "2020-09-10T22:16:20", "description": "Our place is 2 blocks from Vista Park", "number_rooms": 2, "number_bathrooms": 2, "max_guest": 4, "price_by_night": 88, "latitude": 31.4141, "longitude": -109.879}
+    400:
+      description: Body request is not a valid JSON
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not a JSON"}
+    404:
+      description: Parameter place_id not linked to any City object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

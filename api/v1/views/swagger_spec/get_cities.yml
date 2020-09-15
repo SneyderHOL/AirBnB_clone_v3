@@ -1,0 +1,44 @@
+Retrieves all cities of a state
+  ---
+  tags:
+    - Cities
+  parameters:
+    - in: path
+      name: state_id
+      type: string
+      description: The State id
+      required: true
+  responses:
+    200:
+      description: List of all cities
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: City object id
+          name:
+            type: string
+            description: City object name
+          state_id:
+            type: string
+            description: State object id
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: [{"__class__": "City", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "name": "San Francisco", "state_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "updated_at": "2020-09-10T20:06:21"}, {"__class__": "City", "created_at": "2020-09-11T14:10:11", id: "a15b91e5-6b8a-3f2d-9abc-73ccea64f18b", "name": "Pasadena", "state_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "updated_at": "2020-09-11T14:10:11"}]
+    404:
+      description: Parameter state_id not linked to any State object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            description: Error message
+        example: {"error": "Not found"}

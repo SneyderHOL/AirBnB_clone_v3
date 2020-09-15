@@ -9,10 +9,12 @@ from models.city import City
 from models.place import Place
 from models.review import Review
 from models.user import User
+from flasgger import swag_from
 
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'],
                  strict_slashes=False)
+@swag_from('swagger_spec/get_reviews.yml')
 def get_reviews_by_place(place_id):
     """Retrieves the list of all Review objects according to a Place"""
     place = get_object(Place, place_id)
@@ -21,6 +23,7 @@ def get_reviews_by_place(place_id):
 
 
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
+@swag_from('swagger_spec/get_review.yml')
 def get_review(review_id):
     """Retrieves a Review object"""
     review_obj = get_object(Review, review_id)
@@ -29,6 +32,7 @@ def get_review(review_id):
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
+@swag_from('swagger_spec/create_review.yml')
 def create_review_according_to_place(place_id):
     """Creates a new Review object according to a place"""
     data = request.get_json()
@@ -51,6 +55,7 @@ def create_review_according_to_place(place_id):
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'],
                  strict_slashes=False)
+@swag_from('swagger_spec/delete_review.yml')
 def delete_review(review_id):
     """Deletes a Review object"""
     review_obj = get_object(Review, review_id)
@@ -60,6 +65,7 @@ def delete_review(review_id):
 
 
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
+@swag_from('swagger_spec/update_review.yml')
 def update_review(review_id):
     """Updates a Review object"""
     review_obj = get_object(Review, review_id)

@@ -1,0 +1,15 @@
+Shows status
+  ---
+  tags:
+    - Status
+  responses:
+    200:
+      description: Show status
+      schema:
+        type: object
+        properties:
+          status:
+            type: string
+            description: Status
+        example:
+          status: OK

@@ -1,0 +1,25 @@
+Deletes a state
+  ---
+  tags:
+    - States
+  parameters:
+    - in: path
+      name: state_id
+      type: string
+      description: The State id
+      required: true
+  responses:
+    200:
+      description: State object deleted
+      schema:
+        type: object
+        example: {}
+    404:
+      description: Parameter state_id not linked to any State object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}

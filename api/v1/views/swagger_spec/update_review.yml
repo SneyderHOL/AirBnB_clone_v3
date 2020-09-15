@@ -1,0 +1,62 @@
+Updates a review
+  ---
+  tags:
+    - Reviews
+  consumes:
+    - application/json
+  parameters:
+    - in: path
+      name: review_id
+      type: string
+      description: The Review id
+      required: true
+    - in: formData
+      name: text
+      type: string
+      description: The Review text
+  responses:
+    200:
+      description: Review object updated
+      schema:
+        type: object
+        properties:
+          __class__:
+            type: string
+            description: Class name
+          created_at:
+            type: string
+            description: Datetime as string
+          id:
+            type: string
+            description: Review object id
+          text:
+            type: string
+            description: Review object text
+          place_id:
+            type: string
+            description: Place object id
+          user_id:
+            type: string
+            description: User object id
+          updated_at:
+            type: string
+            description: Datetime as string
+        example: {"__class__": "Review", "created_at": "2020-09-10T20:06:21", "id": "22bb3cf1-ca48-4149-bd2c-e14c340ecdcd", "text": "Best place, cute, cheap and cozy", "place_id": "36b928f1-b148-4149-bd2c-e14c340ecdcd", "user_id": "a5d81c11-24b9-f46c-db7c-e14c340ecdcd", "updated_at": "2020-09-10T20:06:21"}
+    400:
+      description: Body request is not a valid JSON
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not a JSON"}
+    404:
+      description: Parameter review_id not linked to any Review object
+      schema:
+        type: object
+        properties:
+          error:
+            type: string
+            desription: Error message
+        example: {"error": "Not found"}
