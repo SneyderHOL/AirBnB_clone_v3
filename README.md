@@ -159,6 +159,18 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 ```
 
+## API documentation
+To checkout the API documentation flasgger library is needed, you can install it with this command:
+
+    pip3 install flasgger
+
+Next you have to run the flask application with the correspondent environ variables like in the example:
+
+    HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db HBNB_API_HOST=0.0.0.0 HBNB_API_PORT=5000 python3 -m api.v1.app
+
+Then you can view the documentation in your browser: http://0.0.0.0:5000/apidocs
+
+
 ## Bugs
 No known bugs at this time. 
 
